@@ -1,0 +1,45 @@
+#buttonsRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#buttonsRow > * {
+    flex-grow: 1;
+}
+
+.field {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+
+.field > label {
+    font-weight: 600;
+}
+
+.field > input {
+    width: 50%;
+}
+
+form {
+    width: 25%;
+    border: 0.1em solid black;
+    border-left: 0.5em solid black;
+    padding: 2em;
+    background-color: white;
+}
+
+body {
+    background-color: gainsboro;
+}
+
+.formContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,11 +1,12 @@
 import React from "react";
 import {NavigationPannel} from "./NavigationPannel";
+import "./stylesheet.css";
 
 class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 'connection',
+            currentPage: 'signfewrfewr_in',
             isConnected: false
         };
         this.getConnected = this.getConnected.bind(this); // Bind the method to the class
@@ -27,7 +28,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        return ( <NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected={this.state.isConnected}/> );
+        return ( <NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected={this.state.isConnected} currentPage={this.state.currentPage}/> );
     }
 }
 
