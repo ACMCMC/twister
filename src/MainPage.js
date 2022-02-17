@@ -6,7 +6,7 @@ class MainPage extends React.Component {
         super(props);
         this.state = {
             currentPage: 'connection',
-            loggedIn: false
+            isConnected: false
         };
         this.getConnected = this.getConnected.bind(this); // Bind the method to the class
         this.setLogout = this.setLogout.bind(this); // Bind the method to the class
@@ -22,12 +22,12 @@ class MainPage extends React.Component {
     setLogout() {
         this.setState({
             currentPage: 'connection',
-            loggedIn: false
+            isConnected: false
         })
     }
 
     render() {
-        return ( <NavigationPannel/> );
+        return ( <NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected={this.state.isConnected}/> );
     }
 }
 
