@@ -5,6 +5,11 @@ class NavigationPannel extends Component {
   }
 
   render() {
-    return <p></p>;
+    return (
+      <nav className="NavigationPanel">
+        <Login></Login>
+        <Logout></Logout>
+      </nav>
+    );
   }
 }
