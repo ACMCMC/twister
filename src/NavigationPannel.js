@@ -9,20 +9,15 @@ class NavigationPannel extends Component {
     }
 
     render() {
-        if (this.props.currentPage === 'sign_in') {
-            return (
-                <SignIn/>
-            );
-        }
         if (this.props.isConnected) {
             return (
-                <nav className="NavigationPanel">
+                <nav className="NavigationPannel">
                     <Logout logout={this.props.logout}></Logout>
                 </nav>
             );
         } else {
             return (
-                <nav className="NavigationPanel">
+                <nav className="NavigationPannel">
                     <Login></Login>
                 </nav>
             );
