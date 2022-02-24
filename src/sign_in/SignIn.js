@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "./sign_in.css"
+import styles from "./sign_in.module.css";
 
 class SignIn extends Component {
     constructor(props) {
@@ -8,48 +8,46 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div id="formAlignmentContainer">
                 <div className="generalContainer">
                     <div className="formHeader">
                         <h1>Enregistrement</h1>
                     </div>
                     <div className="containerContent">
                         <form action="/connexion" method="post">
-                            <div id="rowNomPrenom" className="field">
-                                <div className="verticalDiv">
+                            <div id={styles.rowNomPrenom} className={styles.field}>
+                                <div className={styles.verticalDiv}>
                                     <label>Prenom
-                                        <input id="prenom" name="prenom" type="text" />
+                                        <input id={styles.prenom} name="prenom" type="text" />
                                     </label>
                                 </div>
-                                <div className="verticalDiv">
+                                <div className={styles.verticalDiv}>
                                     <label>Nom
-                                        <input id="nom" name="nom" type="text" />
+                                        <input id={styles.nom} name="nom" type="text" />
                                     </label>
                                 </div>
                             </div>
-                            <div className="field">
+                            <div className={styles.field}>
                                 <label>Login
-                                    <input type="email" id="login" name="login" />
+                                    <input type="email" id={styles.login} name="login" />
                                 </label>
                             </div>
-                            <div className="field">
+                            <div className={styles.field}>
                                 <label>Mot de Passe
-                                    <input type="password" id="password" name="password" />
+                                    <input type="password" id={styles.password} name="password" />
                                 </label>
                             </div>
-                            <div className="field">
+                            <div className={styles.field}>
                                 <label for="passwordRewrite">Retapez
-                                    <input type="passwordRewrite" id="passwordRewrite" name="passwordRewrite" />
+                                    <input type="passwordRewrite" id={styles.passwordRewrite} name="passwordRewrite" />
                                 </label>
                             </div>
-                            <div id="buttonsRow">
-                                <button className="regularButton primaryButton" id="btnConnexion" type="submit">Connexion</button>
+                            <div id={styles.buttonsRow}>
+                                <button className="regularButton primaryButton" id={styles.btnConnexion} type="submit">Connexion</button>
                                 <input type="button" className="regularButton secondaryButton" onClick="window.location.href='./main.html'" value="Annuler" />
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
         );
     }
 }

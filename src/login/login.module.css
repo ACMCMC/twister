@@ -24,16 +24,12 @@
     width: 50%;
 }
 
-form {
+#loginForm {
     width: 25%;
     border: 0.1em solid black;
     border-left: 0.5em solid black;
     padding: 2em;
     background-color: white;
-}
-
-body {
-    background-color: gainsboro;
 }
 
 .formContainer {

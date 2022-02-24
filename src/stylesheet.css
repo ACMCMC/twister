@@ -38,6 +38,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
     margin: 0;
+    background-color: gainsboro;
 }
 
 table {
@@ -55,70 +56,6 @@ input {
 input:focus {
     border-width: 0.4em;
     transition: all 0.2s ease-in-out;
-}
-
-#header {
-    display: flex;
-    border-bottom: 0.1em solid white;
-    position: sticky;
-    top: 0;
-    background-color: black;
-    color: white;
-    height: 4em;
-    align-items: center;
-    justify-content: space-between;
-    
-}
-
-#header > #search {
-    flex-grow: 1;
-    margin-left: 5%;
-    margin-right: 5%;
-    justify-content: center;
-}
-#header > #search > form {
-    margin: 0;
-}
-#header > #search > form > #searchForm {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-#header > #search > form > #searchForm > #labelCheckboxContacts {
-    font-size: 0.6em;
-}
-#header > #search > form > #searchForm > #searchText {
-    width: 0;
-    flex-grow: 1;
-    height: 3em;
-    background-color: black;
-    color: white;
-    border-color: white;
-    background-image: url("./search_icon.png");
-    background-position: 0.5em 0.5em; 
-    background-size: 2em;
-    background-repeat: no-repeat;
-    padding-left: 3em;
-}
-#header > #search > form > #searchForm > #searchText:focus {
-    background-position: 0.5em 0.2em; 
-    background-size: 1.7em;
-}
-
-#header > #logo {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-left: 1em;
-}
-#header > #logo > img {
-    height: 60%;
-}
-#header > #linksLogin {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
 }
 
 .generalContainer {

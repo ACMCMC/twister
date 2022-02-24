@@ -1,0 +1,51 @@
+#commentsArea {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 2em;
+    display: inline-block;
+    width: 60%;
+}
+
+#newCommentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#commentsList {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#statisticsContainer {
+    width: 20%;
+    padding: 2em;
+    display: inline-block;
+}
+
+#mainContent {
+
+}
+
+.commentContainer {
+    margin-top: 1em;
+}
+
+#newCommentText {
+    height: 5em;
+    width: 60%;
+}
+
+.commentInfoHeader > * {
+    margin-right: 1em;
+    color: grey;
+}
+
+.commentInfoHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+}

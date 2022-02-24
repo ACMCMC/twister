@@ -1,13 +1,13 @@
 import React from "react";
-import {NavigationPannel} from "./NavigationPannel";
-import "./stylesheet.css";
+import {NavigationPannel} from "./nav/NavigationPannel";
 import {SignIn} from "./sign_in/SignIn";
+import { Feed } from "./feed/Feed";
 
 class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 'sign_in',
+            currentPage: 'feed',
             isConnected: false
         };
         this.getConnected = this.getConnected.bind(this); // Bind the method to the class
@@ -34,6 +34,9 @@ class MainPage extends React.Component {
 
         if (this.state.currentPage === 'sign_in') {
             output.push(<SignIn/>)
+        }
+        if (this.state.currentPage === 'feed') {
+            output.push(<Feed/>)
         }
 
         return output;
