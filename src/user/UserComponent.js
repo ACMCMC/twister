@@ -8,11 +8,18 @@ class UserComponent extends Component {
     render() {
         return (
             <div>
+                <p>user info:</p>
                 <p>{this.props.user.getUser()}</p>
                 <p>{this.props.user.getName()}</p>
-                <p>{this.props.user.getBirthdate()}</p>
+                <p>
+                    {
+                        this.props.user.getBirthdate().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric' })
+                    }
+                </p>
                 <p>{this.props.user.getEmail()}</p>
             </div>
         );
     }
 }
+
+export { UserComponent };
