@@ -13,7 +13,7 @@ class UserComponent extends Component {
                 <p>{this.props.user.getName()}</p>
                 <p>
                     {
-                        this.props.user.getBirthdate().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric' })
+                        this.props.user.getBirthdate().toLocaleDateString('en-EN', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric'})
                     }
                 </p>
                 <p>{this.props.user.getEmail()}</p>
