@@ -1,8 +1,8 @@
 class User {
-    constructor(name, user, bithdate, email) {
+    constructor(name, user, birthdate, email) {
         this.name = name;
         this.user = user;
-        this.bithdate = bithdate;
+        this.birthdate = birthdate;
         this.email = email;
         this.friends = [];
     }
@@ -15,8 +15,8 @@ class User {
         return this.user;
     }
 
-    getBithdate() {
-        return this.bithdate;
+    getBirthdate() {
+        return this.birthdate;
     }
 
     getEmail() {

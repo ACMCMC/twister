@@ -3,7 +3,8 @@ import {NavigationPannel} from "./nav/NavigationPannel";
 import {SignIn} from "./sign_in/SignIn";
 import { Feed } from "./feed/Feed";
 import {UserComponent} from "./user/UserComponent";
-import {User} from "./user/User";
+import {User} from "./common/User";
+import {Footer} from "./footer/Footer"
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -38,12 +39,13 @@ class MainPage extends React.Component {
             output.push(<SignIn/>)
         }
         if (this.state.currentPage === 'user') {
-            let user = new User("dasdas", "fwenkfrejwrf", new Date(), "rjewrjwellkwe");
+            let user = new User("Aldán CREO MARINO", "aldan.creo_marino", new Date(), "aldan.creo_marino@etu.sorbonne-universite.fr");
             output.push(<UserComponent user={user}/>)
         }
         if (this.state.currentPage === 'feed') {
             output.push(<Feed/>)
         }
+        output.push(<Footer/>)
 
         return output;
     }

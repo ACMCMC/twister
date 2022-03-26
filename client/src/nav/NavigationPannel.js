@@ -27,13 +27,13 @@ class NavigationPannel extends Component {
                                     <input type="text" id={styles.searchText} />
                                     <button className={"regularButton"} type="submit" id={styles.btnSearch}>Rechercher</button>
                                     <input type="checkbox" id={styles.checkboxContacts} />
-                                    <label for="checkboxContacts" id={styles.labelCheckboxContacts}>Seulement mes contacts</label>
+                                    <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Seulement mes contacts</label>
                                 </div>
                             </form>
                         </div>
                         <div id={styles.linksLogin}>
-                            <input type="button" className="regularButton" onclick="window.location.href='./login.html'" value="Connexion" />
-                            <input type="button" className="regularButton" onclick="window.location.href='./register.html'" value="Enregistrement" />
+                            <input type="button" className="regularButton" onClick="window.location.href='./login.html'" value="Connexion" />
+                            <input type="button" className="regularButton" onClick="window.location.href='./register.html'" value="Enregistrement" />
                         </div>
                     </div>
                 </nav>
