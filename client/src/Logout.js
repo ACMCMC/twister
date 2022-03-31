@@ -1,17 +1,9 @@
 import { Component } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "./features/authentication/authenticationSlice";
 
-class Logout extends Component {
-    constructor(props) {
-        super(props);
-    }
+export function Logout() {
+    const dispatch = useDispatch();
 
-    render() {
-        return (
-        <div>
-            Logout
-            <button onClick={this.props.logout}>Logout</button>
-        </div>);
-    }
+    return <button onClick={() => dispatch(logout())}>Logout</button>;
 }
-
-export {Logout};

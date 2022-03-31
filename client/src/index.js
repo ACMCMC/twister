@@ -10,20 +10,21 @@ import { Login } from './login/Login';
 import { SignUp } from './sign_in/SignUp';
 import { NavigationPannel } from './nav/NavigationPannel';
 import { Footer } from './footer/Footer';
-import { Session } from './Session';
-
-const session = new Session();
+import store from './store'
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
+  <Provider store={store}>
   <BrowserRouter>
-    <NavigationPannel session={session}></NavigationPannel>
+    <NavigationPannel></NavigationPannel>
     <Routes>
       <Route path="/" element={<Feed />} />
       <Route path="login" element={<Login />} />
       <Route path="sign_up" element={<SignUp />} />
     </Routes>
     <Footer></Footer>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
