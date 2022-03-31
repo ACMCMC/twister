@@ -53,11 +53,18 @@
     flex-direction: row;
     margin-left: 1em;
 }
-#header > #logo > img {
+
+#header > #logo > * {
     height: 60%;
 }
+
+#logoImg {
+    height: 100%;
+}
+
 #header > #linksLogin {
     display: flex;
     flex-direction: row;
     height: 100%;
+    align-items: center;
 }

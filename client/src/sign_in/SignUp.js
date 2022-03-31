@@ -1,14 +1,15 @@
 import { Component } from "react";
 import styles from "./sign_in.module.css";
 
-class SignIn extends Component {
+class SignUp extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         return (
-                <div className="generalContainer">
+            <div id={styles.formAlignmentContainer}>
+                <div id={styles.signUpForm} className="ContainerContent">
                     <div className="formHeader">
                         <h1>Enregistrement</h1>
                     </div>
@@ -48,8 +49,9 @@ class SignIn extends Component {
                         </form>
                     </div>
                 </div>
+                </div>
         );
     }
 }
 
-export { SignIn };
+export { SignUp };

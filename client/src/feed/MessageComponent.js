@@ -1,26 +1,6 @@
 import { Component } from "react";
 import styles from "./feed.module.css";
 
-class Message {
-    constructor(text, user, date) {
-        this.text = text;
-        this.user = user;
-        this.date = date;
-    }
-
-    getText() {
-        return this.text;
-    }
-
-    getUser() {
-        return this.user;
-    }
-
-    getDate() {
-        return this.date;
-    }
-}
-
 class MessageComponent extends Component {
     constructor(props) {
         super(props);
@@ -46,4 +26,4 @@ class MessageComponent extends Component {
     }
 }
 
-export { MessageComponent, Message };
+export { MessageComponent };

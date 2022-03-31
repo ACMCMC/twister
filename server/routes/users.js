@@ -1,5 +1,5 @@
 var express = require("express");
-const { User } = require("../common/User");
+var User = require("../common/User");
 var router = express.Router();
 
 router.get("/list", function (req, res, next) {

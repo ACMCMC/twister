@@ -8,8 +8,8 @@ class Login extends Component {
 
     render() {
         return (
-            <div id="formContainer" className="generalContainer">
-                <form action="/connexion" method="post" id={styles.loginForm}>
+            <div className={styles.formContainer}>
+                <form action="/connexion" method="post" id={styles.loginForm} className={"containerContent"}>
                     <h1>Ouvrir une session</h1>
                     <div className={styles.field}>
                         <label>Login

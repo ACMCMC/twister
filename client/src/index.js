@@ -4,10 +4,26 @@ import './index.css';
 import './stylesheet.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { MainPage } from './MainPage';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Feed } from './feed/Feed';
+import { Login } from './login/Login';
+import { SignUp } from './sign_in/SignUp';
+import { NavigationPannel } from './nav/NavigationPannel';
+import { Footer } from './footer/Footer';
+import { Session } from './Session';
+
+const session = new Session();
 
 ReactDOM.render(
-  <MainPage/>,
+  <BrowserRouter>
+    <NavigationPannel session={session}></NavigationPannel>
+    <Routes>
+      <Route path="/" element={<Feed />} />
+      <Route path="login" element={<Login />} />
+      <Route path="sign_up" element={<SignUp />} />
+    </Routes>
+    <Footer></Footer>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

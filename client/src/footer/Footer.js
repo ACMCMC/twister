@@ -11,7 +11,7 @@ class Footer extends Component {
     }
 
     render() {
-        return <footer>
+        return <footer id={styles.footer}>
             <p>
                 Connection to the server: {this.state.isConnected ? "connected" : "disconnected"}
             </p>

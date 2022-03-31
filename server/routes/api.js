@@ -6,5 +6,6 @@ router.get("/isConnected", function (req, res, next) {
 });
 
 router.use("/users", require("./users"));
+router.use("/authentication", require("./authentication"));
 
 module.exports = router;

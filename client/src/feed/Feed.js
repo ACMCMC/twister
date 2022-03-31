@@ -1,6 +1,6 @@
 import styles from "./feed.module.css";
 import { Component } from "react";
-import { Message } from "./Message";
+import { Message } from "../common/Message";
 import { MessageList } from "./MessageList";
 import { NewMessage } from "./NewMessage";
 import { Statistics } from "./Statistics";

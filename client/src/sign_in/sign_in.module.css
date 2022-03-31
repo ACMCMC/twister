@@ -46,9 +46,16 @@ body {
 }
 
 #formAlignmentContainer {
-    width: 100%;
+    padding: 10%;
+    width: 80%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#signUpForm {
+    width: 40%;
+    border: 0.1em solid black;
+    border-left: 0.5em solid black;
 }

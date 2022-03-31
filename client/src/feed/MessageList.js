@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { MessageComponent } from "./Message";
+import { MessageComponent } from "./MessageComponent";
 import styles from "./feed.module.css";
 
 class MessageList extends Component {
