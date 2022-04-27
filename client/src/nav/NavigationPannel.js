@@ -4,6 +4,7 @@ import styles from "./nav.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authentication/authenticationSlice";
+import { Logout } from "../logout/Logout";
 
 export function NavigationPannel() {
     const authenticated = useSelector(state => state.authentication.isAuthenticated);
@@ -29,7 +30,7 @@ export function NavigationPannel() {
                         </form>
                     </div>
                     <div id={styles.linksLogin}>
-                        <button className="regularButton" onClick={() => dispatch(logout())}>Se déconnecter</button>
+                        <Logout></Logout>
                     </div>
                 </div>
             </nav>

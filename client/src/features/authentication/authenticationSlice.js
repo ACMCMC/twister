@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 
 export const authenticationSlice = createSlice({
     name: 'authentication',
@@ -9,11 +11,9 @@ export const authenticationSlice = createSlice({
     reducers: {
         login: (state, action) => {
             state.isAuthenticated = true;
-            state.token = action.payload.token;
         },
         logout: (state) => {
             state.isAuthenticated = false;
-            state.token = null;
         }
     }
 });

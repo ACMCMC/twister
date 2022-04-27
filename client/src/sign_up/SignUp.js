@@ -1,4 +1,4 @@
-import styles from "./sign_in.module.css";
+import styles from "./sign_up.module.css";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { login } from "../features/authentication/authenticationSlice";
 import { Link } from "react-router-dom";
 
 async function request_sign_up(dispatch, loginRef, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef) {
-    axios.get("/api/authentication/sign_up", { params: { login: loginRef.current.value, password: passwordRef.current.value, username: usernameRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value } })
+    axios.post("/api/authentication/sign_up", { login: loginRef.current.value, password: passwordRef.current.value, username: usernameRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value })
     .then((result) => dispatch(login({ token: result.data.token })))
     .catch((error) => alert(error));
 }

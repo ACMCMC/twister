@@ -5,7 +5,7 @@ import { login } from "../features/authentication/authenticationSlice";
 import styles from "./login.module.css";
 
 async function request_login(dispatch, loginRef, passwordRef) {
-    axios.get("/api/authentication/login", { params: { login: loginRef.current.value, password: passwordRef.current.value } })
+    axios.post("/api/user/login", { login: loginRef.current.value, password: passwordRef.current.value })
     .then((result) => dispatch(login({ token: result.data.token })))
     .catch((error) => alert(error));
 }
