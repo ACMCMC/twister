@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Component } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/authentication/authenticationSlice";
 

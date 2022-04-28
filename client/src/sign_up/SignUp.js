@@ -5,10 +5,13 @@ import axios from "axios";
 import { login } from "../features/authentication/authenticationSlice";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { request_login } from "../login/Login";
 
 async function request_sign_up(dispatch, navigate, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef, emailRef) {
     axios.post("/api/user/register", { username: usernameRef.current.value, password: passwordRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value, email: emailRef.current.value})
-    .then((result) => {dispatch(login({ token: result.data.token })); navigate("/");})
+    .then((result) => {
+        request_login(dispatch, navigate, usernameRef.current.value, passwordRef.current.value);
+    })
     .catch((error) => alert(error));
 }
 

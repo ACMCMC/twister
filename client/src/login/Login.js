@@ -6,12 +6,21 @@ import styles from "./login.module.css";
 import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom";
 
-async function request_login(dispatch, navigate, loginRef, passwordRef) {
-    axios.post("/api/user/login", { login: loginRef.current.value, password: passwordRef.current.value })
-    .then((result) => {dispatch(login({ token: result.data.token })); navigate("/");})
+async function request_login(dispatch, navigate, loginVal, passwordVal) {
+    axios.post("/api/user/login", { login: loginVal, password: passwordVal })
+    .then((result) => {
+        axios.get("/api/get_session_status").then(
+            (result2) => {
+                console.log(result2.data);
+                dispatch(login({
+                    user: result2.data.user
+                }));
+                navigate("/");
+            }
+        );
+    })
     .catch((error) => alert(error));
 }
-
 
 function Login() {
     const dispatch = useDispatch();
@@ -34,7 +43,7 @@ function Login() {
                     </label>
                 </div>
                 <div id="buttonsRow">
-                    <button type="button" className="regularButton primaryButton" id={styles.btnConnexion} onClick={() => request_login(dispatch, navigate, loginRef, passwordRef)}>Connexion</button>
+                    <button type="button" className="regularButton primaryButton" id={styles.btnConnexion} onClick={() => request_login(dispatch, navigate, loginRef.current.value, passwordRef.current.value)}>Connexion</button>
                     <Link to="/">
                         <input type="button" className="regularButton secondaryButton" value="Annuler" />
                     </Link>
@@ -44,4 +53,4 @@ function Login() {
     );
 }
 
-export { Login };
+export { Login, request_login };

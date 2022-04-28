@@ -2,15 +2,12 @@ import { Component } from "react";
 import { Login } from "../login/Login";
 import styles from "./nav.module.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authentication/authenticationSlice";
 import { Logout } from "../logout/Logout";
 
-export function NavigationPannel() {
-    const authenticated = useSelector(state => state.authentication.isAuthenticated);
-    const dispatch = useDispatch();
-
-    if (authenticated) {
+export function NavigationPannel(props) {
+    if (props.isAuthenticated) {
         return (
             <nav className={styles.NavigationPannel}>
                 <div id={styles.header}>
@@ -28,6 +25,11 @@ export function NavigationPannel() {
                                 <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Seulement mes contacts</label>
                             </div>
                         </form>
+                    </div>
+                    <div>
+                        Welcome, <Link to="/profile">
+                            <span>{props.username}</span>
+                        </Link>
                     </div>
                     <div id={styles.linksLogin}>
                         <Logout></Logout>
@@ -67,3 +69,16 @@ export function NavigationPannel() {
         );
     }
 }
+
+function mapStateToProps(state) {
+    if (state.authentication.user) {
+        return {
+            isAuthenticated: true,
+            username: state.authentication.user.username
+        };
+    } else {
+        return { isAuthenticated: false };
+    }
+}
+
+export default connect(mapStateToProps)(NavigationPannel);

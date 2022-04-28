@@ -12,10 +12,8 @@ mocha.describe("Test de l'API user", () => {
     mocha.it("user", (done) => {
         const request = chai.request(app.default).keepOpen();
         const user = {
-            login: "pikachu",
-            password: "1234",
-            lastname: "chu",
-            firstname: "pika"
+            username: "trial",
+            password: "trial",
         };
 
         request
