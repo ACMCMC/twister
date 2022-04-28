@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom";
 
 async function request_login(dispatch, navigate, loginVal, passwordVal) {
-    axios.post("/api/user/login", { login: loginVal, password: passwordVal })
+    axios.post("/api/public/login", { login: loginVal, password: passwordVal })
     .then((result) => {
-        axios.get("/api/get_session_status").then(
+        axios.get("/api/public/get_session_status").then(
             (result2) => {
                 console.log(result2.data);
                 dispatch(login({

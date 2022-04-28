@@ -6,15 +6,6 @@ const { publicAPI } = require("./publicAPI.js");
 function init() {
     const router = express.Router();
 
-    // Enforce authentication
-    router.use((req, res, next) => {
-        if (req.session.current_user) {
-            next();
-        } else {
-            res.status(401).send("Unauthorized");
-        }
-    });
-
     router.post("/logout", async (req, res) => {
         try {
             // Destruction of the session
@@ -35,7 +26,7 @@ function init() {
     });
 
     router
-        .route("/get")
+        .route("/")
         .get(async (req, res) => {
             try {
                 const user = await User.findOne({ username: req.query.username }).exec();

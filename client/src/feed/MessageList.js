@@ -1,23 +1,24 @@
 import { Component } from "react";
 import { MessageComponent } from "./MessageComponent";
 import styles from "./feed.module.css";
+import { connect } from "react-redux";
 
-class MessageList extends Component {
-    constructor(props) {
-        super(props);
+function MessageList(props) {
+    let messages = [];
+    for (let message of props.messages) {
+        messages.push(<MessageComponent message={message}></MessageComponent>);
     }
-
-    render() {
-        let messages = []
-        for (let message of this.props.messages) {
-            messages.push(<MessageComponent message={message}></MessageComponent>);
-        }
-        return (
-            <div id={styles.commentsList}>
-                {messages}
-            </div>
-        );
-    }
+    return (
+        <div id={styles.commentsList}>
+            {messages}
+        </div>
+    );
 }
 
-export { MessageList };
+function mapStateToProps(state) {
+    return {
+        messages: state.messages.messages
+    };
+}
+
+export default connect(mapStateToProps)(MessageList);

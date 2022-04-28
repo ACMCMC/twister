@@ -1,32 +1,36 @@
 import styles from "./feed.module.css";
 import { Component } from "react";
 import { Message } from "../common/Message";
-import { MessageList } from "./MessageList";
+import MessageList from "./MessageList";
 import { NewMessage } from "./NewMessage";
 import { Statistics } from "./Statistics";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { addMessage } from "../features/messages/messagesSlice";
 
-class Feed extends Component {
-    constructor(props) {
-        super(props);
-    }
+function loadAllMessages(dispatch) {
+    axios.get("/api/message/all")
+    .then(result => {
+        for (let message of result.data) {
+            const parsedMsg = new Message(message.text, message.author, new Date(message.created), message.id)
+            dispatch(addMessage({message: parsedMsg}));
+        }
+    })
+    .catch(error => {console.error(error)});
+}
 
-    render() {
-        let messages = [
-            new Message("abc", "John", new Date()),
-            new Message("def", "Mark", new Date()),
-            new Message("ghi", "Paul", new Date()),
-            new Message("jkl", "Eric", new Date()),
-        ];
+export function Feed(props) {
+    const dispatch = useDispatch();
+    loadAllMessages(dispatch);
+
         return (
             <div>
                 <Statistics></Statistics>
                 <div id={styles.commentsArea}>
                     <NewMessage></NewMessage>
-                    <MessageList messages={messages}></MessageList>
+                    <MessageList></MessageList>
                 </div>
             </div>
         );
-    }
 }
 
-export { Feed };
