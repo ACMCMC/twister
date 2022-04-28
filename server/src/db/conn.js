@@ -1,28 +1,5 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require('mongoose');
 const connectionString = process.env.DB_URI;
+mongoose.connect(connectionString);
 
-const client = new MongoClient(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-let dbConnection;
-
-module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      if (err || !db) {
-        return callback(err);
-      }
-
-      dbConnection = db.db("technoweb");
-      console.log("Successfully connected to MongoDB.");
-
-      return callback();
-    });
-  },
-
-  getDb: function () {
-    return dbConnection;
-  },
-};
+module.exports = mongoose;

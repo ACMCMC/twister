@@ -4,21 +4,23 @@ import { useRef } from "react";
 import axios from "axios";
 import { login } from "../features/authentication/authenticationSlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-async function request_sign_up(dispatch, loginRef, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef) {
-    axios.post("/api/authentication/sign_up", { login: loginRef.current.value, password: passwordRef.current.value, username: usernameRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value })
-    .then((result) => dispatch(login({ token: result.data.token })))
+async function request_sign_up(dispatch, navigate, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef, emailRef) {
+    axios.post("/api/user/register", { username: usernameRef.current.value, password: passwordRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value, email: emailRef.current.value})
+    .then((result) => {dispatch(login({ token: result.data.token })); navigate("/");})
     .catch((error) => alert(error));
 }
 
 export function SignUp() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const loginRef = useRef();
+    const usernameRef = useRef();
+    const emailRef = useRef();
     const passwordRef = useRef();
     const nameRef = useRef();
     const surnameRef = useRef();
-    const usernameRef = useRef();
     const birthdateRef = useRef();
 
     return (
@@ -28,7 +30,7 @@ export function SignUp() {
                     <h1>Enregistrement</h1>
                 </div>
                 <div className="containerContent">
-                    <form action="/connexion" method="post">
+                    <form>
                         <div id={styles.rowNomPrenom} className={styles.field}>
                             <div className={styles.verticalDiv}>
                                 <label>Prenom
@@ -42,13 +44,13 @@ export function SignUp() {
                             </div>
                         </div>
                         <div className={styles.field}>
-                            <label>Login
-                                <input type="email" id={styles.login} name="login" ref={loginRef} />
+                            <label>Username
+                                <input type="text" id={styles.login} name="username" ref={usernameRef} />
                             </label>
                         </div>
                         <div className={styles.field}>
-                            <label>Username
-                                <input type="text" id={styles.login} name="username" ref={usernameRef} />
+                            <label>Email
+                                <input type="email" id={styles.login} name="email" ref={emailRef} />
                             </label>
                         </div>
                         <div className={styles.field}>
@@ -67,7 +69,7 @@ export function SignUp() {
                             </label>
                         </div>
                         <div id={styles.buttonsRow}>
-                            <button className="regularButton primaryButton" id={styles.btnConnexion} onClick={() => request_sign_up(dispatch, loginRef, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef)}>Connexion</button>
+                            <button type="button" className="regularButton primaryButton" id={styles.btnConnexion} onClick={() => request_sign_up(dispatch, navigate, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef, emailRef)}>Connexion</button>
                             <Link to="/">
                                 <input type="button" className="regularButton secondaryButton" value="Annuler" />
                             </Link>

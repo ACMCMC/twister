@@ -12,5 +12,5 @@ async function request_logout(dispatch) {
 export function Logout() {
     const dispatch = useDispatch();
 
-    return <button class="regularButton" onClick={() => request_logout(dispatch)}>Logout</button>;
+    return <button className="regularButton" onClick={() => request_logout(dispatch)}>Logout</button>;
 }

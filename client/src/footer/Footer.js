@@ -1,36 +1,18 @@
-import { Component } from "react";
+import { connect } from "react-redux";
 import styles from "./footer.module.css";
-const axios = require('axios').default;
 
-class Footer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isConnected: false,
-        }
-    }
+function Footer(props) {
+    return <footer id={styles.footer}>
+        <p>
+            Connection to the server: {props.isConnected ? "connected" : "disconnected"}
+        </p>
+    </footer>
+}
 
-    render() {
-        return <footer id={styles.footer}>
-            <p>
-                Connection to the server: {this.state.isConnected ? "connected" : "disconnected"}
-            </p>
-        </footer>
-    }
-
-    componentDidMount() {
-        this.isConnected();
-    }
-
-    isConnected() {
-        axios.get('/api/isConnected')
-            .then(function (response) {
-                this.setState({isConnected: response.data.isConnected});
-            }.bind(this))
-            .catch(function (error) {
-                this.setState({isConnected: false});
-            }.bind(this));
+function mapStateToProps(state) {
+    return {
+        isConnected: state.connection.isConnected
     }
 }
 
-export { Footer };
+export default connect(mapStateToProps)(Footer);

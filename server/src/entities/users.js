@@ -1,67 +1,52 @@
-class Users {
-  constructor(db) {
-    this.db = db
-    // suite plus tard avec la BD
-  }
+const mongoose = require('../db/conn.js');
 
-  create(login, password, lastname, firstname) {
-    return new Promise((resolve, reject) => {
-      let userid = 1; // À remplacer par une requête bd
-      if(false) {
-        //erreur
-        reject();
+const bcrypt = require("bcryptjs")
+
+const userSchema = new mongoose.Schema({
+  name: {type: String, required: true},
+  surname: {type: String, required: true},
+  email: {type: String, unique: true, required: true},
+  password: {type: String, required: true},
+  username: {type: String, unique: true, required: true},
+  created: {type: Date, default: Date.now},
+  friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  birthdate: {type: Date, required: false},
+});
+
+userSchema.pre("save", function (next) {
+  const user = this;
+  const saltRounds = 10;
+
+  if (this.isModified("password") || this.isNew) {
+    bcrypt.genSalt(saltRounds, function (saltError, salt) {
+      if (saltError) {
+        return next(saltError);
       } else {
-        resolve(userid);
+        bcrypt.hash(user.password, salt, function(hashError, hash) {
+          if (hashError) {
+            return next(hashError);
+          }
+
+          user.password = hash
+          next();
+        })
       }
-    });
+    })
+  } else {
+    return next();
   }
+});
 
-  get(userid) {
-    return new Promise((resolve, reject) => {
-      const user = {
-         login: "pikachu",
-         password: "1234",
-         lastname: "chu",
-         firstname: "pika"
-      }; // À remplacer par une requête bd
+userSchema.methods.checkPassword = function(password, callback) {
+  bcrypt.compare(password, this.password, function(error, isMatch) {
+    if (error) {
+      return callback(error)
+    } else {
+      callback(null, isMatch)
+    }
+  })
+};
 
-      if(false) {
-        //erreur
-        reject();
-      } else {
-        if(userid == 1) {
-          resolve(user);
-        } else {
-          resolve(null);
-        }
-      }
-    });
-  }
+const User = mongoose.model('User', userSchema);
 
-  async exists(login) {
-    return new Promise((resolve, reject) => {
-      if(login !== "pikachu") {
-        //erreur
-        reject();
-      } else {
-        resolve(true);
-      }
-    });
-  }
-
-  checkpassword(login, password) {
-    return new Promise((resolve, reject) => {
-      let userid = 1; // À remplacer par une requête bd
-      if(password !== "1234") {
-        //erreur
-        reject();
-      } else {
-        resolve(userid);
-      }
-    });
-  }
-
-}
-
-exports.default = Users;
-
+module.exports = User;
