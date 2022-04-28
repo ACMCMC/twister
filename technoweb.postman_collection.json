@@ -107,6 +107,145 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Post message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var msg_id = pm.response.json()[\"_id\"];\r",
+							"pm.collectionVariables.set(\"message_id\", msg_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"ABCDEF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete message",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"ABCDEF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message?id={{message_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{message_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get message",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"ABCDEF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message?id={{message_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{message_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all messages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"ABCDEF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message/all",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message",
+						"all"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -137,6 +276,10 @@
 		},
 		{
 			"key": "session_id",
+			"value": ""
+		},
+		{
+			"key": "message_id",
 			"value": ""
 		}
 	]
