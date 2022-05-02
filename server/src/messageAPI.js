@@ -21,7 +21,7 @@ function init() {
         })
         .post(async (req, res) => {
             try {
-                const msg = new Message({text: req.body.text, author: req.session.current_user.id});
+                const msg = new Message({ text: req.body.text, author: req.session.current_user.id });
                 await msg.save();
                 res.status(200).send(msg);
             }
@@ -31,13 +31,14 @@ function init() {
         })
         .delete((req, res, next) => {
             try {
-                Message.deleteOne({ id: req.query.id }).exec().then((resp) => {
-                    if (resp.deletedCount === 0)
-                        res.sendStatus(404);
-                    else
+                Message.findByIdAndDelete(req.query.id).then((resp) => {
+                    if (resp) {
                         res.sendStatus(200);
-                }).catch(() => {
-                    res.sendStatus(500);
+                    } else {
+                        res.sendStatus(404);
+                    }
+                }).catch((error) => {
+                    res.status(500).send(error);
                 });
             }
             catch (e) {
@@ -45,18 +46,18 @@ function init() {
             }
         });
 
-        router.route("/all").get(async (req, res) => {
-            try {
-                const msgs = await Message.find({}).exec();
-                if (!msgs)
-                    res.sendStatus(404);
-                else
-                    res.send(msgs);
-            }
-            catch (e) {
-                res.status(500).send(e);
-            }
-        });
+    router.route("/all").get(async (req, res) => {
+        try {
+            const msgs = await Message.find({}).exec();
+            if (!msgs)
+                res.sendStatus(404);
+            else
+                res.send(msgs);
+        }
+        catch (e) {
+            res.status(500).send(e);
+        }
+    });
 
     return router;
 }

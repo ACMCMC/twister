@@ -39,6 +39,27 @@ function init() {
                 res.status(500).send(e);
             }
         })
+        .put(async (req, res) => {
+        const { username, password, birthdate, name, surname, email } = req.body;
+
+        if (!username || !password || !surname || !name || !email) {
+            res.status(400).send("Missing fields");
+        } else {
+            try {
+                var user = req.session.current_user; // We are authenticated, so we're sure that the user exists
+                    user.name = name;
+                    user.surname = surname;
+                    user.birthdate = birthdate;
+                    user.email = email;
+                    user.password = password;
+                    user.save();
+                    res.send(user);
+            }
+            catch (e) {
+                res.status(500).send(e);
+            }
+        }
+        })
         .delete((req, res, next) => res.send(`delete user ${req.params.user_id}`));
 
     return router;

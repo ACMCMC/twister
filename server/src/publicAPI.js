@@ -1,6 +1,5 @@
 
 const express = require("express");
-const { default: mongoose } = require("mongoose");
 const User = require("./entities/users.js");
 
 function init() {
@@ -12,15 +11,15 @@ function init() {
             if (!login || !password) {
                 res.status(400).json({
                     status: 400,
-                    "message": "Requête invalide : login et password nécessaires"
+                    "message": "Invalid request: missing fields"
                 });
                 return;
             }
-            const user = await User.findOne({ username: login }).exec();
+            const user = await User.findOne({ username: login}).exec();
             if (!user) {
                 res.status(401).json({
                     status: 401,
-                    message: "Utilisateur inconnu"
+                    message: "Unknown user"
                 });
                 return;
             }
@@ -28,7 +27,7 @@ function init() {
                 if (error) {
                     res.status(500).json({
                         status: 500,
-                        message: "Erreur interne"
+                        message: "Internal error"
                     });
                     return;
                 }
@@ -37,7 +36,7 @@ function init() {
                     req.session.destroy((err) => { });
                     res.status(403).json({
                         status: 403,
-                        message: "Login et/ou mot de passe invalide(s)"
+                        message: "Wrong username/password"
                     });
                 } else {
                     // Correct login
@@ -45,15 +44,15 @@ function init() {
                         if (err) {
                             res.status(500).json({
                                 status: 500,
-                                message: "Erreur interne"
+                                message: "Internal server error"
                             });
                         }
                         else {
                             // C'est bon, nouvelle session créée
-                            req.session.current_user = user;
+                            req.session.current_user = user
                             res.status(200).json({
                                 status: 200,
-                                message: "Login et mot de passe accepté"
+                                message: "Login accepted"
                             });
                         }
                     });
@@ -65,7 +64,7 @@ function init() {
             // Toute autre erreur
             res.status(500).json({
                 status: 500,
-                message: "erreur interne",
+                message: "Internal error",
                 details: (e || "Erreur inconnue").toString()
             });
         }
