@@ -21,7 +21,7 @@ function init() {
         })
         .post(async (req, res) => {
             try {
-                const msg = new Message({ text: req.body.text, author: req.session.current_user.id });
+                const msg = new Message({ text: req.body.text, author: req.session.current_user.username });
                 await msg.save();
                 res.status(200).send(msg);
             }

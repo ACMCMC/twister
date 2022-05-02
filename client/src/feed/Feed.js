@@ -2,7 +2,7 @@ import styles from "./feed.module.css";
 import { Component } from "react";
 import { Message } from "../common/Message";
 import MessageList from "./MessageList";
-import { NewMessage } from "./NewMessage";
+import NewMessage from "./NewMessage";
 import { Statistics } from "./Statistics";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -12,7 +12,7 @@ function loadAllMessages(dispatch) {
     axios.get("/api/message/all")
     .then(result => {
         for (let message of result.data) {
-            const parsedMsg = new Message(message.text, message.author, new Date(message.created), message.id)
+            const parsedMsg = new Message(message.text, message.author, new Date(message.created), message._id, message.liked_by)
             dispatch(addMessage({message: parsedMsg}));
         }
     })

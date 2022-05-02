@@ -12,6 +12,10 @@
     font-weight: 600;
     border-style: solid;
     box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: inherit;
+    text-align: center;
 }
 
 .regularButton:hover {

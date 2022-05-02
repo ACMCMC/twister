@@ -15,7 +15,7 @@ function init() {
                 });
                 return;
             }
-            const user = await User.findOne({ username: login}).exec();
+            const user = await User.findById(login);
             if (!user) {
                 res.status(401).json({
                     status: 401,
@@ -89,14 +89,15 @@ function init() {
     });
 
     router.post("/register", (req, res) => {
+        console.log(req.body);
         const { username, password, birthdate, name, surname, email } = req.body;
 
-        if (!username || !password || !surname || !name || !email) {
+        if (!username || !password || !surname || !name || !email || !birthdate) {
             res.status(400).send("Missing fields");
         } else {
-        const newUser = new User({ name: name, surname: surname, email: email, username: username, password: password });
+        const newUser = new User({ name: name, surname: surname, email: email, _id: username, password: password, birthdate: new Date(birthdate) });
         newUser.save()
-        .then(() => res.status(201).send({ id: username }))
+        .then(() => res.status(201).send(newUser))
         .catch((err) => res.status(500).send(err));
         }
     });

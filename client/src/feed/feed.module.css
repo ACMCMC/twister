@@ -21,9 +21,8 @@
 
 #statisticsContainer {
     width: 20%;
-    padding: 2em;
     display: inline-block;
-    background-color: antiquewhite;
+    margin-top: 5em;
 }
 
 #mainContent {

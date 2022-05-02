@@ -5,7 +5,12 @@
 }
 
 #buttonsRow > * {
+    margin-right: 2em;
     flex-grow: 1;
+}
+
+#buttonsRow > *:last-child {
+    margin-right: 0;
 }
 
 #rowNomPrenom {
@@ -29,12 +34,15 @@
     justify-content: space-between;
 }
 
-label {
+.field > label {
     font-weight: 600;
+    margin-right: 2em;
+    width: fit-content;
 }
 
 .field > input {
-    width: 50%;
+    flex-grow: 1;
+    width: 0;
 }
 
 .form {

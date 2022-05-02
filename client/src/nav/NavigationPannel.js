@@ -20,9 +20,9 @@ export function NavigationPannel(props) {
                         <form action="/search" method="post">
                             <div id={styles.searchForm}>
                                 <input type="text" id={styles.searchText} />
-                                <button className={"regularButton"} type="submit" id={styles.btnSearch}>Rechercher</button>
+                                <button className={"regularButton"} type="submit" id={styles.btnSearch}>Search</button>
                                 <input type="checkbox" id={styles.checkboxContacts} />
-                                <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Seulement mes contacts</label>
+                                <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Just my contacts</label>
                             </div>
                         </form>
                     </div>
@@ -50,9 +50,9 @@ export function NavigationPannel(props) {
                         <form action="/search" method="post">
                             <div id={styles.searchForm}>
                                 <input type="text" id={styles.searchText} />
-                                <button className={"regularButton"} type="submit" id={styles.btnSearch}>Rechercher</button>
+                                <button className={"regularButton"} type="submit" id={styles.btnSearch}>Search</button>
                                 <input type="checkbox" id={styles.checkboxContacts} />
-                                <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Seulement mes contacts</label>
+                                <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Just my contacts</label>
                             </div>
                         </form>
                     </div>

@@ -8,8 +8,13 @@ class Statistics extends Component {
 
     render() {
         return (
-            <div id={styles.statisticsContainer}>
-                Statistics
+            <div className="generalContainer" id={styles.statisticsContainer}>
+                <div className="formHeader">
+                    <h1>Statistics</h1>
+                    </div>
+                <div className="containerContent">
+                    FEFHEUR
+                </div>
             </div>
         );
     }

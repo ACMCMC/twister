@@ -1,14 +1,14 @@
 const mongoose = require('../db/conn.js');
 
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
+  _id: {type: String},
   name: {type: String, required: true},
   surname: {type: String, required: true},
   email: {type: String, unique: true, required: true},
   password: {type: String, required: true},
-  username: {type: String, unique: true, required: true},
-  created: {type: Date, default: Date.now},
+  created: {type: mongoose.Schema.Types.Date, default: Date.now},
   friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   birthdate: {type: Date, required: false},
 });
@@ -50,6 +50,10 @@ userSchema.methods.checkPassword = function(password, callback) {
 userSchema.methods.toJSON = function() {
   var obj = this.toObject()
   delete obj.password
+  obj.birthdate = obj.birthdate.toISOString().split('T')[0]
+  obj.username = obj._id;
+  delete obj._id;
+  delete obj._v;
   return obj
 }
 

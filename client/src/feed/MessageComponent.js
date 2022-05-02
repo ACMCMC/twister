@@ -13,7 +13,7 @@ class MessageComponent extends Component {
                     <div className={styles.commentInfoHeader}>
                         <div className={styles.commentCreationDate}>
                             {
-                                this.props.message.getDate().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric' })
+                                this.props.message.getDate().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric', hour: 'numeric', minute: 'numeric' })
                             }
                         </div>
                         <div className={styles.commentUsername}>@{this.props.message.getUser()}</div>

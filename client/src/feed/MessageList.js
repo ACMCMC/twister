@@ -16,8 +16,9 @@ function MessageList(props) {
 }
 
 function mapStateToProps(state) {
+    console.log(state.messages.messages);
     return {
-        messages: state.messages.messages
+        messages: Object.values(state.messages.messages)
     };
 }
 

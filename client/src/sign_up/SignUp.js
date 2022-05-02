@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { request_login } from "../login/Login";
 
 async function request_sign_up(dispatch, navigate, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef, emailRef) {
-    axios.post("/api/user/register", { username: usernameRef.current.value, password: passwordRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value, email: emailRef.current.value})
-    .then((result) => {
-        request_login(dispatch, navigate, usernameRef.current.value, passwordRef.current.value);
-    })
-    .catch((error) => alert(error));
+    axios.post("/api/public/register", { username: usernameRef.current.value, password: passwordRef.current.value, birthdate: birthdateRef.current.value, name: nameRef.current.value, surname: surnameRef.current.value, email: emailRef.current.value })
+        .then((result) => {
+            request_login(dispatch, navigate, usernameRef.current.value, passwordRef.current.value);
+        })
+        .catch((error) => alert(error));
 }
 
 export function SignUp() {
@@ -30,52 +30,50 @@ export function SignUp() {
         <div id={styles.formAlignmentContainer}>
             <div id={styles.signUpForm} className="ContainerContent">
                 <div className="formHeader">
-                    <h1>Enregistrement</h1>
+                    <h1>Sign up</h1>
                 </div>
                 <div className="containerContent">
                     <form>
                         <div id={styles.rowNomPrenom} className={styles.field}>
                             <div className={styles.verticalDiv}>
-                                <label>Prenom
-                                    <input id={styles.prenom} name="prenom" type="text" ref={nameRef} />
+                                <label>Name
                                 </label>
+                                <input id={styles.prenom} name="prenom" type="text" ref={nameRef} />
                             </div>
                             <div className={styles.verticalDiv}>
-                                <label>Nom
-                                    <input id={styles.nom} name="nom" type="text" ref={surnameRef} />
+                                <label>Surname
                                 </label>
+                                <input id={styles.nom} name="nom" type="text" ref={surnameRef} />
                             </div>
                         </div>
                         <div className={styles.field}>
                             <label>Username
-                                <input type="text" id={styles.login} name="username" ref={usernameRef} />
                             </label>
+                            <input type="text" id={styles.login} name="username" ref={usernameRef} />
                         </div>
                         <div className={styles.field}>
                             <label>Email
-                                <input type="email" id={styles.login} name="email" ref={emailRef} />
                             </label>
+                            <input type="email" id={styles.login} name="email" ref={emailRef} />
                         </div>
                         <div className={styles.field}>
                             <label>Birthdate
-                                <input type="date" id={styles.login} name="birthdate" ref={birthdateRef} />
                             </label>
+                            <input type="date" id={styles.login} name="birthdate" ref={birthdateRef} />
                         </div>
                         <div className={styles.field}>
-                            <label>Mot de Passe
-                                <input type="password" id={styles.password} name="password" ref={passwordRef} />
+                            <label>Password
                             </label>
+                            <input type="password" id={styles.password} name="password" ref={passwordRef} />
                         </div>
                         <div className={styles.field}>
-                            <label for="passwordRewrite">Retapez
-                                <input type="password" id={styles.passwordRewrite} name="passwordRewrite" />
+                            <label for="passwordRewrite">Password rewrite
                             </label>
+                            <input type="password" id={styles.passwordRewrite} name="passwordRewrite" />
                         </div>
                         <div id={styles.buttonsRow}>
-                            <button type="button" className="regularButton primaryButton" id={styles.btnConnexion} onClick={() => request_sign_up(dispatch, navigate, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef, emailRef)}>Connexion</button>
-                            <Link to="/">
-                                <input type="button" className="regularButton secondaryButton" value="Annuler" />
-                            </Link>
+                            <button type="button" className="regularButton primaryButton" id={styles.btnConnexion} onClick={() => request_sign_up(dispatch, navigate, passwordRef, nameRef, surnameRef, usernameRef, birthdateRef, emailRef)}>Sign up</button>
+                            <Link to="/" className="regularButton secondaryButton">Cancel</Link>
                         </div>
                     </form>
                 </div>
