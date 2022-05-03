@@ -4,12 +4,12 @@ import { logout } from '../authentication/authenticationSlice';
 export const statisticsSlice = createSlice({
     name: 'statistics',
     initialState: {
-        statistics: null,
+        likes: 0,
     },
     reducers: {
-        setStatistics: (state, action) => {
-            const stats = action.payload.statistics;
-            state.statistics = stats;
+        setLikes: (state, action) => {
+            const stats = action.payload.likes;
+            state.likes = stats;
         },
     },
     extraReducers: (builder) => {
@@ -17,6 +17,6 @@ export const statisticsSlice = createSlice({
     }
 });
 
-export const { setStatistics } = statisticsSlice.actions;
+export const { setLikes } = statisticsSlice.actions;
 
 export const statisticsReducer = statisticsSlice.reducer;

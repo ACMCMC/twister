@@ -1,45 +1,50 @@
 import axios from "axios";
 import { Component } from "react";
 import { connect, useDispatch } from "react-redux";
-import { setStatistics } from "../features/statistics/statisticsSlice";
+import { setLikes } from "../features/statistics/statisticsSlice";
 import styles from "./feed.module.css";
 
 function loadStats(dispatch) {
-    return axios.get("/api/statistics").then((resp) => dispatch(setStatistics({statistics: resp.data})));
+    return axios.get("/api/statistics").then((resp) => dispatch(setLikes({ likes: resp.data.likes })));
 }
 
 function Statistics(props) {
-
-        if (props.stats) {
+    if (props.user) {
         return (
             <div className="generalContainer" id={styles.statisticsContainer}>
                 <div className="formHeader">
                     <h1>Statistics</h1>
-                    </div>
+                </div>
                 <div className="containerContent">
-                    Likes: {props.stats.likes}
+                    <div>Likes: {props.likes}</div>
+                    <div>Followers: {props.followers}</div>
+                    <div>Following: {props.following}</div>
                 </div>
             </div>
-        );} else {
+        );
+    } else {
         return (
             <div className="generalContainer" id={styles.statisticsContainer}>
                 <div className="formHeader">
                     <h1>Statistics</h1>
-                    </div>
+                </div>
                 <div className="containerContent">
                     Not available
                 </div>
             </div>
         );
-        }
     }
+}
 
-    function mapStateToProps(state) {
-        return {
-            stats: state.statistics.statistics
-        };
-    }
+function mapStateToProps(state) {
+    return {
+        likes: state.statistics.likes,
+        followers: state.users.followers,
+        following: state.users.following,
+        user: state.authentication.user,
+    };
+}
 
 export default connect(mapStateToProps)(Statistics);
 
-export {loadStats};
+export { loadStats };

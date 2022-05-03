@@ -83,8 +83,8 @@ function init() {
                 else
                 {
                     const followers = await User.find({ following: { $in: user._id} });
-                    const followers_ids = followers.map(f => f._id);
-                    res.send(followers_ids);
+                    const followers_usernames = followers.map(f => f.username);
+                    res.send(followers_usernames);
                 }
             }
             catch (e) {
@@ -162,7 +162,10 @@ function init() {
                 if (!user)
                     res.sendStatus(404);
                 else {
-                    res.send(user.following);
+                    const followingUsers = await User.find({ _id: { $in: user.following}}).exec();
+                    console.log("dnuhfesbufhes" + followingUsers);
+                    const followingUsersUsernames = followingUsers.map((u) => u.username);
+                    res.send(followingUsersUsernames);
                 }
             }
             catch (e) {

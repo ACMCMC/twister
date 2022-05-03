@@ -4,13 +4,20 @@ import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addMessage } from "../features/messages/messagesSlice";
 import styles from "./feed.module.css";
+import { loadStats } from "./Statistics";
 
 function like(dispatch, _id) {
-    axios.put("/api/message/like", { _id: _id }).then((resp) => dispatch(addMessage({ message: resp.data })));
+    axios.put("/api/message/like", { _id: _id }).then((resp) => {
+        dispatch(addMessage({ message: resp.data }));
+        loadStats(dispatch);
+    });
 }
 
 function dislike(dispatch, _id) {
-    axios.delete("/api/message/like", { params: {_id: _id} }).then((resp) => dispatch(addMessage({ message: resp.data })));
+    axios.delete("/api/message/like", { params: { _id: _id } }).then((resp) => {
+        dispatch(addMessage({ message: resp.data }));
+        loadStats(dispatch);
+    });
 }
 
 function MessageComponent(props) {
