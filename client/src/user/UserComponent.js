@@ -1,34 +1,82 @@
+import axios from "axios";
 import { Component } from "react";
+import { connect } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./user.module.css";
 
-class UserComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
+function loadUser(id) {
+    axios.get("/api/users/", {username: id})
+}
 
-    render() {
+function UserComponent(props) {
+    let { id } = useParams();
+
+    if (props.users[id]) {
         return (
-            <div className={"generalContainer"}>
-                <div className={"containerContent"}>
-                    <h1>User info</h1>
-                    <dl>
-                        <dt>Name</dt>
-                        <dd>{this.props.user.getName()}</dd>
-                        <dt>Username</dt>
-                        <dd className={styles.data}>@{this.props.user.getUser()}</dd>
-                        <dt>Birthdate</dt>
-                        <dd>
-                            {
-                                this.props.user.getBirthdate().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric' })
-                            }
-                        </dd>
-                        <dt>Email</dt>
-                        <dd><a href={"mailto:" + this.props.user.getEmail()}>{this.props.user.getEmail()}</a></dd>
-                    </dl>
+            <div id={styles.formAlignmentContainer}>
+                <div id={styles.signUpForm} className="ContainerContent">
+                    <div className="formHeader">
+                        <h1>User info</h1>
+                    </div>
+                    <div className="containerContent">
+                        <form>
+                            <div className={styles.field}>
+                                <label>Username
+                                </label>
+                                <input type="text" id={styles.login} name="username" value={props.user.username} />
+                            </div>
+                            <div id={styles.rowNomPrenom} className={styles.field}>
+                                <div className={styles.verticalDiv}>
+                                    <label>Name
+                                    </label>
+                                    <input id={styles.prenom} name="prenom" type="text" defaultValue={props.user.name} />
+                                </div>
+                                <div className={styles.verticalDiv}>
+                                    <label>Surname
+                                    </label>
+                                    <input id={styles.nom} name="nom" type="text" defaultValue={props.user.surname} />
+                                </div>
+                            </div>
+                            <div className={styles.field}>
+                                <label>Email
+                                </label>
+                                <input type="email" id={styles.login} name="email" defaultValue={props.user.email} />
+                            </div>
+                            <div className={styles.field}>
+                                <label>Birthdate
+                                </label>
+                                <input type="date" id={styles.login} name="birthdate" defaultValue={props.user.birthdate} />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div id={styles.formAlignmentContainer}>
+                <div id={styles.signUpForm} className="ContainerContent">
+                    <div className="formHeader">
+                        <h1>User info</h1>
+                    </div>
+                    <div className="containerContent">
+                        <p>User with ID {id} not found.</p>
+                        <div>
+                            <Link to="/">
+                                <button className="regularButton primaryButton">Go home</button>
+                                </Link>
+                            </div>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export { UserComponent };
+function mapStateToProps(state) {
+    return {
+        users: state.users.users
+    };
+}
+
+export default connect(mapStateToProps)(UserComponent);

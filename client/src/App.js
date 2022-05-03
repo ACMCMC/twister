@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { login, logout } from './features/authentication/authenticationSlice';
 import axios from 'axios';
 import { registerConnected, registerDisconnected } from './features/connection/connectionSlice';
-import { UserComponent } from './user/UserComponent';
+import UserComponent from './user/UserComponent';
 import ProfileComponent from './profile/ProfileComponent';
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
                 <Route path="sign_up" element={<SignUp />} />
                 <Route path="user" element={<UserComponent />} />
                 <Route path="profile" element={<ProfileComponent />} />
+                <Route path="/user/:id" element={<UserComponent />} />
             </Routes>
             <Footer></Footer>
         </BrowserRouter>

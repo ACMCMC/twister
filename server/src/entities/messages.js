@@ -1,4 +1,5 @@
 const mongoose = require('../db/conn.js');
+const User = require('./users.js');
 
 const messageSchema = new mongoose.Schema({
   text: {type: String, unique: false, required: true},
@@ -7,6 +8,12 @@ const messageSchema = new mongoose.Schema({
   liked_by: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   parent: {type: mongoose.Schema.Types.ObjectId, ref: 'Message', required: false},
 });
+
+messageSchema.methods.toJSON = function() {
+  var obj = this.toObject()
+  delete obj.__v;
+    return obj;
+}
 
 const Message = mongoose.model('Message', messageSchema);
 

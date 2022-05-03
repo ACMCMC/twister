@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import styles from "./feed.module.css";
 
 class MessageComponent extends Component {
@@ -16,7 +17,7 @@ class MessageComponent extends Component {
                                 this.props.message.date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric', hour: 'numeric', minute: 'numeric' })
                             }
                         </div>
-                        <div className={styles.commentUsername}>@{this.props.message.author}</div>
+                        <Link to={"/user/" + this.props.message.author} className={styles.commentUsername}>@{this.props.message.author}</Link>
                         <button className={["regularButton", "secondaryButton"].join(" ")}>+</button>
                     </div>
                     <div className={styles.commentText}>{this.props.message.text}</div>
