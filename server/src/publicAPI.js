@@ -15,7 +15,7 @@ function init() {
                 });
                 return;
             }
-            const user = await User.findById(login);
+            const user = await User.findOne({ username: login });
             if (!user) {
                 res.status(401).json({
                     status: 401,
@@ -95,7 +95,7 @@ function init() {
         if (!username || !password || !surname || !name || !email || !birthdate) {
             res.status(400).send("Missing fields");
         } else {
-        const newUser = new User({ name: name, surname: surname, email: email, _id: username, password: password, birthdate: new Date(birthdate) });
+        const newUser = new User({ name: name, surname: surname, email: email, username: username, password: password, birthdate: new Date(birthdate) });
         newUser.save()
         .then(() => res.status(201).send(newUser))
         .catch((err) => res.status(500).send(err));

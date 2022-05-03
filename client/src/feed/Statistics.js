@@ -1,23 +1,45 @@
+import axios from "axios";
 import { Component } from "react";
+import { connect, useDispatch } from "react-redux";
+import { setStatistics } from "../features/statistics/statisticsSlice";
 import styles from "./feed.module.css";
 
-class Statistics extends Component {
-    constructor(props) {
-        super(props);
-    }
+function loadStats(dispatch) {
+    return axios.get("/api/statistics").then((resp) => dispatch(setStatistics({statistics: resp.data})));
+}
 
-    render() {
+function Statistics(props) {
+
+        if (props.stats) {
         return (
             <div className="generalContainer" id={styles.statisticsContainer}>
                 <div className="formHeader">
                     <h1>Statistics</h1>
                     </div>
                 <div className="containerContent">
-                    FEFHEUR
+                    Likes: {props.stats.likes}
+                </div>
+            </div>
+        );} else {
+        return (
+            <div className="generalContainer" id={styles.statisticsContainer}>
+                <div className="formHeader">
+                    <h1>Statistics</h1>
+                    </div>
+                <div className="containerContent">
+                    Not available
                 </div>
             </div>
         );
+        }
     }
-}
 
-export { Statistics };
+    function mapStateToProps(state) {
+        return {
+            stats: state.statistics.statistics
+        };
+    }
+
+export default connect(mapStateToProps)(Statistics);
+
+export {loadStats};

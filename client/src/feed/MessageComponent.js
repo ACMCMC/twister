@@ -13,13 +13,13 @@ class MessageComponent extends Component {
                     <div className={styles.commentInfoHeader}>
                         <div className={styles.commentCreationDate}>
                             {
-                                this.props.message.getDate().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric', hour: 'numeric', minute: 'numeric' })
+                                this.props.message.date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'numeric', hour: 'numeric', minute: 'numeric' })
                             }
                         </div>
-                        <div className={styles.commentUsername}>@{this.props.message.getUser()}</div>
+                        <div className={styles.commentUsername}>@{this.props.message.author}</div>
                         <button className={["regularButton", "secondaryButton"].join(" ")}>+</button>
                     </div>
-                    <div className={styles.commentText}>{this.props.message.getText()}</div>
+                    <div className={styles.commentText}>{this.props.message.text}</div>
                 </div>
             </div>
         );

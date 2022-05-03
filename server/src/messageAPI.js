@@ -1,4 +1,5 @@
 const express = require("express");
+const { ObjectId } = require("mongodb");
 const { default: mongoose } = require("mongoose");
 const Message = require("./entities/messages.js");
 
@@ -9,7 +10,7 @@ function init() {
         .route("/")
         .get(async (req, res) => {
             try {
-                const msg = await Message.findOne({ id: req.query.id }).exec();
+                const msg = await Message.findOne({ _id: req.query._id }).exec();
                 if (!msg)
                     res.sendStatus(404);
                 else
@@ -21,7 +22,7 @@ function init() {
         })
         .post(async (req, res) => {
             try {
-                const msg = new Message({ text: req.body.text, author: req.session.current_user.username });
+                const msg = new Message({ text: req.body.text, author: req.session.current_user._id });
                 await msg.save();
                 res.status(200).send(msg);
             }

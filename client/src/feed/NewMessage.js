@@ -1,18 +1,18 @@
 import axios from "axios";
 import { Component, useRef } from "react";
 import { connect, useDispatch } from "react-redux";
-import { Message } from "../common/Message";
 import { addMessage } from "../features/messages/messagesSlice";
 import styles from "./feed.module.css";
 
-function post_tweet(dispatch, text) {
+function post_tweet(dispatch, textRef) {
     axios.post("/api/message/", {
-        text: text
+        text: textRef.current.value
     })
         .then(result => {
             const message = result.data;
-            const parsedMsg = new Message(message.text, message.author, new Date(message.created), message._id, message.liked_by);
-            dispatch(addMessage({ message: parsedMsg }));
+            message.date = new Date(message.created);
+            dispatch(addMessage({ message: message }));
+            textRef.current.value = "";
         })
         .catch(error => { alert(error) });
 }
@@ -31,9 +31,9 @@ function NewMessage(props) {
                         You need to be logged in to post a tweet.
                     </div>
                 </div>
-                <form hidden={props.user === null}>
+                <form hidden={props.user === null} id={styles.newCommentContainer}>
                     <textarea id={styles.newCommentText} className={styles.newCommentText} ref={textRef}></textarea>
-                    <button type="button" className={["regularButton", "primaryButton"].join(" ")} id={styles.submitNewCommentButton} onClick={() => post_tweet(dispatch, textRef.current.value)}>Add</button>
+                    <button type="button" className={["regularButton", "primaryButton"].join(" ")} id={styles.submitNewCommentButton} onClick={() => post_tweet(dispatch, textRef)}>Add</button>
                 </form>
             </div>
         </div>

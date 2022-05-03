@@ -1,4 +1,5 @@
 const express = require("express");
+const Message = require("./entities/messages.js");
 const User = require("./entities/users.js");
 
 function init() {
@@ -44,7 +45,7 @@ function init() {
                 res.status(400).send("Missing fields");
             } else {
                 try {
-                    const user = await User.findById(req.session.current_user.username);
+                    const user = await User.findById(req.session.current_user._id);
                     if (name) user.name = name;
                     if (surname) user.surname = surname;
                     if (birthdate) user.birthdate = new Date(birthdate);
@@ -59,7 +60,115 @@ function init() {
                 }
             }
         })
-        .delete((req, res, next) => res.send(`delete user ${req.params.user_id}`));
+        .delete((req, res, next) => {
+            console.log(req.session.current_user);
+            User.findByIdAndDelete(req.session.current_user._id)
+                .then(() => {
+                    Message.deleteMany({ author: req.session.current_user._id }).then(() => {
+                        req.session.destroy();
+                        res.sendStatus(200);
+                    });
+                })
+                .catch((err) => {
+                    res.status(500).send(err);
+                });
+        });
+
+        router
+        .route("/followers").get(async (req, res) => {
+            try {
+                const user = await User.findOne({ username: req.query.username} );
+                if (!user)
+                    res.sendStatus(404);
+                else
+                {
+                    const followers = await User.find({ following: { $in: user._id} });
+                    const followers_ids = followers.map(f => f._id);
+                    res.send(followers_ids);
+                }
+            }
+            catch (e) {
+                res.status(500).send(e);
+            }
+        });
+
+        router.route("/follow").put(async (req, res) => {
+            try {
+                const user = await User.findOne({ username: req.body.username });
+                if (!user) {
+                    res.sendStatus(404);
+                }
+                else
+                {
+                    const current_user = await User.findById(req.session.current_user._id);
+                    if (!current_user) {
+                        res.sendStatus(404);
+                    }
+                    else
+                    {
+                        if (current_user.following.indexOf(user._id) === -1)
+                        {
+                            current_user.following.push(user._id);
+                            await current_user.save();
+                            req.session.current_user = current_user;
+                            res.sendStatus(200);
+                        }
+                        else
+                        {
+                            res.sendStatus(400);
+                        }
+                    }
+                }
+            }
+            catch (e) {
+                res.status(500).send(e);
+            }
+        });
+
+        router.route("/unfollow").put(async (req, res) => {
+            try {
+                const user = await User.findOne({ username: req.body.username });
+                if (!user)
+                    res.sendStatus(404);
+                else
+                {
+                    const current_user = await User.findById(req.session.current_user._id);
+                    if (!current_user)
+                        res.sendStatus(404);
+                    else
+                    {
+                        if (current_user.following.indexOf(user._id) !== -1)
+                        {
+                            current_user.following.splice(user.following.indexOf(user._id), 1);
+                            await current_user.save();
+                            req.session.current_user = current_user;
+                            res.sendStatus(200);
+                        }
+                        else
+                        {
+                            res.sendStatus(400);
+                        }
+                    }
+                }
+            }
+            catch (e) {
+                res.status(500).send(e);
+            }
+        });
+
+        router.route("/following").get(async (req, res) => {
+            try {
+                const user = await User.findOne({username: req.query.username});
+                if (!user)
+                    res.sendStatus(404);
+                else {
+                    res.send(user.following);
+                }
+            }
+            catch (e) {
+                res.status(500).send(e);
+            }
+        });
 
     return router;
 }

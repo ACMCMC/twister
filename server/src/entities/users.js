@@ -3,13 +3,13 @@ const mongoose = require('../db/conn.js');
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
-  _id: {type: String},
+  username: {type: String, unique: true, required: true},
   name: {type: String, required: true},
   surname: {type: String, required: true},
   email: {type: String, unique: true, required: true},
   password: {type: String, required: true},
   created: {type: mongoose.Schema.Types.Date, default: Date.now},
-  friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   birthdate: {type: Date, required: false},
 });
 
@@ -51,9 +51,8 @@ userSchema.methods.toJSON = function() {
   var obj = this.toObject()
   delete obj.password
   obj.birthdate = obj.birthdate.toISOString().split('T')[0]
-  obj.username = obj._id;
-  delete obj._id;
   delete obj._v;
+  delete obj.following;
   return obj
 }
 

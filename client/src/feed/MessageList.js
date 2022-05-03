@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 function MessageList(props) {
     let messages = [];
     for (let message of props.messages) {
-        messages.push(<MessageComponent message={message}></MessageComponent>);
+        if (!message.parent)
+            messages.push(<MessageComponent message={message} key={message._id}></MessageComponent>);
     }
     return (
         <div id={styles.commentsList}>
@@ -16,7 +17,6 @@ function MessageList(props) {
 }
 
 function mapStateToProps(state) {
-    console.log(state.messages.messages);
     return {
         messages: Object.values(state.messages.messages)
     };

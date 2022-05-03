@@ -49,7 +49,7 @@ table {
     font-size: 1em;
 }
 
-input {
+input, textarea {
     border: 0.05em solid black;
     transition: all 0.2s ease-in-out;
     outline: 0;
@@ -57,7 +57,7 @@ input {
     box-sizing: border-box;
 }
 
-input:focus {
+input:focus, textarea:focus {
     border-width: 0.4em;
     transition: all 0.2s ease-in-out;
 }

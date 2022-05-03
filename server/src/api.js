@@ -4,6 +4,7 @@ const User = require("./entities/users.js");
 const publicAPI = require("./publicAPI.js");
 const userAPI = require("./userAPI.js");
 const messageAPI = require("./messageAPI.js");
+const statisticsAPI = require("./statisticsAPI.js");
 
 function init() {
     const router = express.Router();
@@ -27,6 +28,7 @@ function init() {
     });
     router.use('/user', userAPI.default());
     router.use('/message', messageAPI.default());
+    router.use('/statistics', statisticsAPI.default());
 
     return router;
 }

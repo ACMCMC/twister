@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { messagesSlice } from '../messages/messagesSlice';
 
 export const authenticationSlice = createSlice({
     name: 'authentication',
@@ -7,16 +8,17 @@ export const authenticationSlice = createSlice({
     },
     reducers: {
         login: (state, data) => {
-            state.user = data.payload.user;
             console.log("Logged in!", state.user);
+            return {user: data.payload.user};
         },
-        logout: (state) => {
-            state.user = null;
-            console.log("Logged out");
+        logout: (state, data) => {
+            console.log("Logged out!");
+            return {user: null};
         }
-    }
+    },
 });
 
-export const { login, logout } = authenticationSlice.actions;
+export const { login } = authenticationSlice.actions;
+export const { logout } = authenticationSlice.actions;
 
 export const authenticationReducer = authenticationSlice.reducer;

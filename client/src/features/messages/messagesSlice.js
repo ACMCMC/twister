@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logout } from '../authentication/authenticationSlice';
 
 export const messagesSlice = createSlice({
     name: 'messages',
@@ -8,8 +9,11 @@ export const messagesSlice = createSlice({
     reducers: {
         addMessage: (state, data) => {
             const msg = data.payload.message;
-            state.messages[msg.getId()] = msg;
+            state.messages[msg._id] = msg;
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(logout, (state, action) => messagesSlice.getInitialState());
     }
 });
 
