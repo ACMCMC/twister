@@ -9,6 +9,7 @@ export const messagesSlice = createSlice({
     reducers: {
         addMessage: (state, data) => {
             const msg = data.payload.message;
+            msg.created = new Date(msg.created);
             state.messages[msg._id] = msg;
         },
     },

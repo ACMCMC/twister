@@ -15,6 +15,7 @@ function init() {
     router.use((req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
+        console.log('Query', req.query);
         next();
     });
     router.use('/public', publicAPI.default());

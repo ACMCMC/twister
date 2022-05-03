@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { MessageComponent } from "./MessageComponent";
+import MessageComponent from "./MessageComponent";
 import styles from "./feed.module.css";
 import { connect } from "react-redux";
 

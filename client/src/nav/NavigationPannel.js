@@ -58,10 +58,10 @@ export function NavigationPannel(props) {
                     </div>
                     <div id={styles.linksLogin}>
                         <Link to="/login">
-                            <button className="regularButton">Se connecter</button>
+                            <button className="regularButton">Log in</button>
                         </Link>
                         <Link to="/sign_up">
-                            <button className="regularButton">S'inscrire</button>
+                            <button className="regularButton">Sign up</button>
                         </Link>
                     </div>
                 </div>

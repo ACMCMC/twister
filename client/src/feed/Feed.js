@@ -12,7 +12,6 @@ function loadAllMessages(dispatch) {
     axios.get("/api/message/all")
         .then(result => {
             for (let message of result.data) {
-                message.date = new Date(message.created);
                 dispatch(addMessage({ message: message }));
             }
         })

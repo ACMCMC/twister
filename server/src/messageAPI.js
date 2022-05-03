@@ -104,7 +104,7 @@ function init() {
     })
         .delete(async (req, res) => {
             try {
-                const msg = await Message.findById(req.body._id).exec();
+                const msg = await Message.findById(req.query._id).exec();
                 if (!msg)
                     res.sendStatus(404);
                 else {
