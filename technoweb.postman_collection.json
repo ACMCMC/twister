@@ -11,19 +11,158 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/api/user/get?username=trial",
+					"raw": "{{host}}/api/user/?username=test",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
 						"user",
-						"get"
+						""
 					],
 					"query": [
 						{
 							"key": "username",
-							"value": "trial"
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search an user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/search/?username=tes&justMyContacts=true",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "tes"
+						},
+						{
+							"key": "justMyContacts",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an user's followers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/user/followers/?username=test2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"followers",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "test2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Follow an user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/user/follow/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unfollow an user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/user/unfollow/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"unfollow",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an user's follows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/user/following/?username=test",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"following",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "test"
 						}
 					]
 				}
@@ -49,7 +188,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\": \"trial\",\r\n    \"password\": \"trial\"\r\n}",
+					"raw": "{\r\n    \"login\": \"test\",\r\n    \"password\": \"test\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -154,7 +293,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"text\": \"ABCDEF\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -162,7 +301,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/api/message?id={{message_id}}",
+					"raw": "{{host}}/api/message?_id={{message_id}}",
 					"host": [
 						"{{host}}"
 					],
@@ -172,7 +311,7 @@
 					],
 					"query": [
 						{
-							"key": "id",
+							"key": "_id",
 							"value": "{{message_id}}"
 						}
 					]
@@ -190,7 +329,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"text\": \"ABCDEF\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,7 +337,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/api/message?id={{message_id}}",
+					"raw": "{{host}}/api/message?_id={{message_id}}",
 					"host": [
 						"{{host}}"
 					],
@@ -208,7 +347,7 @@
 					],
 					"query": [
 						{
-							"key": "id",
+							"key": "_id",
 							"value": "{{message_id}}"
 						}
 					]
@@ -242,6 +381,223 @@
 						"api",
 						"message",
 						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test\",\r\n    \"name\": \"Test\",\r\n    \"surname\": \"User\",\r\n    \"birthdate\": \"2000-09-21\",\r\n    \"password\": \"test\",\r\n    \"email\": \"test@mail.fr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/public/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register test",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"name\": \"Test\",\r\n    \"surname\": \"User\",\r\n    \"birthdate\": \"2000-09-21\",\r\n    \"password\": \"test\",\r\n    \"email\": \"test@mail.fr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/public/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Register test2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test2\",\r\n    \"name\": \"Test 2\",\r\n    \"surname\": \"User 2\",\r\n    \"birthdate\": \"2000-09-22\",\r\n    \"password\": \"test\",\r\n    \"email\": \"test2@mail.fr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/public/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Edit an user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Test Mod\",\r\n    \"surname\": \"User Mod\",\r\n    \"birthdate\": \"2000-09-21\",\r\n    \"password\": \"test\",\r\n    \"email\": \"test2@mail.fr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/user/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/statistics",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like a message",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"{{message_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message/like",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove a like from a message",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message/like?_id={{message_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message",
+						"like"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "{{message_id}}"
+						}
 					]
 				}
 			},
