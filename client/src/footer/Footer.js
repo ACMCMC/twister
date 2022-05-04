@@ -7,7 +7,7 @@ function Footer(props) {
             Connection to the server: {props.isConnected ? "connected" : "disconnected"}
         </p>
         <p>
-            Aldan Creo Marino, TechnoWeb 2022
+            Aldan Creo Marino, M. Millard @ TechnoWeb 2022
         </p>
     </footer>
 }

@@ -42,8 +42,6 @@ function ProfileComponent(props) {
   const birthdateRef = useRef();
 
   if (props.user) {
-    console.log(props.user);
-
     return (
       <div id={styles.formAlignmentContainer}>
         <div id={styles.signUpForm} className="ContainerContent">
@@ -57,17 +55,15 @@ function ProfileComponent(props) {
                 </label>
                 <input type="text" id={styles.login} name="username" ref={usernameRef} disabled="true" value={props.user.username} />
               </div>
-              <div id={styles.rowNomPrenom} className={styles.field}>
-                <div className={styles.verticalDiv}>
-                  <label>Name
-                  </label>
-                  <input id={styles.prenom} name="prenom" type="text" ref={nameRef} defaultValue={props.user.name} />
-                </div>
-                <div className={styles.verticalDiv}>
-                  <label>Surname
-                  </label>
-                  <input id={styles.nom} name="nom" type="text" ref={surnameRef} defaultValue={props.user.surname} />
-                </div>
+              <div className={styles.field}>
+                <label>Name
+                </label>
+                <input id={styles.prenom} name="prenom" type="text" ref={nameRef} defaultValue={props.user.name} />
+              </div>
+              <div className={styles.field}>
+                <label>Surname
+                </label>
+                <input id={styles.nom} name="nom" type="text" ref={surnameRef} defaultValue={props.user.surname} />
               </div>
               <div className={styles.field}>
                 <label>Email

@@ -51,3 +51,24 @@
     align-items: center;
     margin-bottom: 1em;
 }
+
+dl {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+dt {
+    font-weight: 600;
+    grid-column-start: 1;
+    margin-bottom: 1em;
+}
+
+dd {
+    margin-left: 1em;
+    grid-column-start: 2;
+}
+
+.statisticsUserLinkContainer {
+    display: block;
+    margin-bottom: 1em;
+}

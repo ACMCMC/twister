@@ -17,17 +17,17 @@ export function NavigationPannel(props) {
                         </Link>
                     </div>
                     <div id={styles.search}>
-                        <form action="/search" method="post">
+                        <form action="/search" method="get">
                             <div id={styles.searchForm}>
-                                <input type="text" id={styles.searchText} />
+                                <input name="query" type="text" id={styles.searchText} />
                                 <button className={"regularButton"} type="submit" id={styles.btnSearch}>Search</button>
-                                <input type="checkbox" id={styles.checkboxContacts} />
+                                <input name="just-my-contacts" type="checkbox" id={styles.checkboxContacts} />
                                 <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Just my contacts</label>
                             </div>
                         </form>
                     </div>
                     <div>
-                        Welcome, <Link to="/profile">
+                        Welcome, <Link to="/profile" id={styles.username}>
                             <span>{props.username}</span>
                         </Link>
                     </div>
@@ -47,11 +47,11 @@ export function NavigationPannel(props) {
                         </Link>
                     </div>
                     <div id={styles.search}>
-                        <form action="/search" method="post">
+                        <form action="/search" method="get">
                             <div id={styles.searchForm}>
-                                <input type="text" id={styles.searchText} />
-                                <button className={"regularButton"} type="submit" id={styles.btnSearch}>Search</button>
-                                <input type="checkbox" id={styles.checkboxContacts} />
+                                <input name="query" type="text" id={styles.searchText} />
+                                <button disabled={true} className={"regularButton"} type="submit" id={styles.btnSearch}>Search</button>
+                                <input name="just-my-contacts" type="checkbox" id={styles.checkboxContacts} />
                                 <label htmlFor="checkboxContacts" id={styles.labelCheckboxContacts}>Just my contacts</label>
                             </div>
                         </form>

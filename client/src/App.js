@@ -11,6 +11,7 @@ import axios from 'axios';
 import { registerConnected, registerDisconnected } from './features/connection/connectionSlice';
 import UserComponent from './user/UserComponent';
 import ProfileComponent from './profile/ProfileComponent';
+import SearchComponent from './search/SearchComponent';
 
 function App() {
     const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
                 <Route path="user" element={<UserComponent />} />
                 <Route path="profile" element={<ProfileComponent />} />
                 <Route path="/user/:id" element={<UserComponent />} />
+                <Route path="/search" element={<SearchComponent />} />
             </Routes>
             <Footer></Footer>
         </BrowserRouter>

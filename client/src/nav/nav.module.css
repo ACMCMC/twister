@@ -68,3 +68,7 @@
     height: 100%;
     align-items: center;
 }
+
+#username {
+    color: white;
+}

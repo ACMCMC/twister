@@ -13,4 +13,13 @@ export default configureStore({
       users: usersReducer,
       statistics: statisticsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore these paths in the state
+        ignoredPaths: ['messages'],
+        ignoredActionPaths: ['*'],
+        ignoredActions: ['messages/addMessage'],
+      },
+    }),
 })

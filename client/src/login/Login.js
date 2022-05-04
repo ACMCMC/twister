@@ -11,7 +11,6 @@ async function request_login(dispatch, navigate, loginVal, passwordVal) {
         .then((result) => {
             axios.get("/api/public/get_session_status").then(
                 (result2) => {
-                    console.log(result2.data);
                     dispatch(login({
                         user: result2.data.user
                     }));

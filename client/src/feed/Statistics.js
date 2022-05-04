@@ -3,6 +3,7 @@ import { Component } from "react";
 import { connect, useDispatch } from "react-redux";
 import { setLikes } from "../features/statistics/statisticsSlice";
 import styles from "./feed.module.css";
+import StatisticsUserLinkComponent from "./StatisticsUserLinkComponent";
 
 function loadStats(dispatch) {
     return axios.get("/api/statistics").then((resp) => dispatch(setLikes({ likes: resp.data.likes })));
@@ -10,15 +11,22 @@ function loadStats(dispatch) {
 
 function Statistics(props) {
     if (props.user) {
+        const followersComponents = props.followers.map((follower) => <StatisticsUserLinkComponent key={follower} id={follower}/>);
+        const followingComponents = props.following.map((follower) => <StatisticsUserLinkComponent key={follower} id={follower}/>);
         return (
             <div className="generalContainer" id={styles.statisticsContainer}>
                 <div className="formHeader">
                     <h1>Statistics</h1>
                 </div>
                 <div className="containerContent">
-                    <div>Likes: {props.likes}</div>
-                    <div>Followers: {props.followers}</div>
-                    <div>Following: {props.following}</div>
+                    <dl>
+                        <dt>Likes:</dt>
+                        <dd>{props.likes}</dd>
+                        <dt>Followers:</dt>
+                        <dd>{followersComponents}</dd>
+                        <dt>Following:</dt>
+                        <dd>{followingComponents}</dd>
+                    </dl>
                 </div>
             </div>
         );

@@ -1,61 +1,3 @@
-#buttonsRow {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-#buttonsRow > * {
-    margin-right: 2em;
-    flex-grow: 1;
-}
-
-#buttonsRow > *:last-child {
-    margin-right: 0;
-}
-
-#rowNomPrenom {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-}
-#rowNomPrenom > div > label {
-    font-weight: 600;
-}
-
-.verticalDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.field {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1em;
-    justify-content: space-between;
-}
-
-.field > label {
-    font-weight: 600;
-    margin-right: 2em;
-    width: fit-content;
-}
-
-.field > input {
-    flex-grow: 1;
-    width: 0;
-}
-
-.form {
-    width: 25%;
-}
-
-body {
-    background-color: gainsboro;
-}
-
 #formAlignmentContainer {
     padding: 10%;
     width: 80%;
@@ -65,8 +7,28 @@ body {
     align-items: center;
 }
 
-#signUpForm {
+#userBox {
     width: 40%;
     border: 0.1em solid black;
     border-left: 0.5em solid black;
+}
+
+#followInformation {
+    margin-bottom: 1em;
+}
+
+dl {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+dt {
+    font-weight: 600;
+    grid-column-start: 1;
+    margin-bottom: 1em;
+}
+
+dd {
+    margin-left: 1em;
+    grid-column-start: 2;
 }

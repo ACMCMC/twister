@@ -1,0 +1,35 @@
+#searchResultsArea {
+    padding: 10%;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#commentsList {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.searchResultContainer {
+    margin-top: 1em;
+}
+
+.searchResult > * {
+}
+
+.searchResult {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchResultUsername {
+    color: black;
+}
+
+.searchResultProfileName {
+    margin-left: 1em;
+}

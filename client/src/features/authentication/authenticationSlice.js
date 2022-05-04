@@ -8,7 +8,7 @@ export const authenticationSlice = createSlice({
     },
     reducers: {
         login: (state, data) => {
-            console.log("Logged in!", state.user);
+            console.log("Logged in!", data.payload.user);
             return {user: data.payload.user};
         },
         logout: (state, data) => {

@@ -163,7 +163,6 @@ function init() {
                     res.sendStatus(404);
                 else {
                     const followingUsers = await User.find({ _id: { $in: user.following}}).exec();
-                    console.log("dnuhfesbufhes" + followingUsers);
                     const followingUsersUsernames = followingUsers.map((u) => u.username);
                     res.send(followingUsersUsernames);
                 }

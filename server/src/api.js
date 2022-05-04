@@ -5,6 +5,7 @@ const publicAPI = require("./publicAPI.js");
 const userAPI = require("./userAPI.js");
 const messageAPI = require("./messageAPI.js");
 const statisticsAPI = require("./statisticsAPI.js");
+const searchAPI = require("./searchAPI.js");
 
 function init() {
     const router = express.Router();
@@ -30,6 +31,7 @@ function init() {
     router.use('/user', userAPI.default());
     router.use('/message', messageAPI.default());
     router.use('/statistics', statisticsAPI.default());
+    router.use('/search', searchAPI.default());
 
     return router;
 }
