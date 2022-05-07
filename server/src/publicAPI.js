@@ -7,7 +7,7 @@ function init() {
     router.post("/login", async (req, res) => {
         try {
             const { login, password } = req.body;
-            // Erreur sur la requête HTTP
+            // Error on request
             if (!login || !password) {
                 res.status(400).json({
                     status: 400,
@@ -48,7 +48,7 @@ function init() {
                             });
                         }
                         else {
-                            // C'est bon, nouvelle session créée
+                            // New session created
                             req.session.current_user = user
                             res.status(200).json({
                                 status: 200,
@@ -61,7 +61,7 @@ function init() {
             return;
         }
         catch (e) {
-            // Toute autre erreur
+            // Any other error
             res.status(500).json({
                 status: 500,
                 message: "Internal error",

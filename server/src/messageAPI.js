@@ -41,9 +41,9 @@ function init() {
         })
         .post(async (req, res) => {
             try {
-                const msg = new Message({ text: req.body.text, author: req.session.current_user._id });
-                await msg.save();
-                const transformed = await transform_msg(msg);
+                const msg = new Message({ text: req.body.text, author: req.session.current_user._id }); // Create the message according to the params
+                await msg.save(); // Save the message
+                const transformed = await transform_msg(msg); // Transform the message to send it back to the client, to a better format
                 res.status(201).send(transformed);
             }
             catch (e) {
