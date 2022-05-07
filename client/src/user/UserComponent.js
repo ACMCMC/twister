@@ -44,7 +44,8 @@ function UserComponent(props) {
     }, [props.currentUserId]);
 
     const currentUserFollowing = props.following.includes(id);
-    const followsCurrentUser = props.followers.includes(props.currentUserId);
+    const followsCurrentUser = props.followers.includes(id);
+    console.log(props.followers, props.currentUserId);
 
     if (user) {
         return (
