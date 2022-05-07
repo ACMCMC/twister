@@ -44,7 +44,7 @@ function init() {
                 const msg = new Message({ text: req.body.text, author: req.session.current_user._id });
                 await msg.save();
                 const transformed = await transform_msg(msg);
-                res.status(200).send(transformed);
+                res.status(201).send(transformed);
             }
             catch (e) {
                 console.error(e);
@@ -95,7 +95,7 @@ function init() {
                 msg.liked_by.push(req.session.current_user._id);
                 await msg.save();
                 const transformed = await transform_msg(msg);
-                res.status(200).send(transformed);
+                res.status(201).send(transformed);
             }
         } catch (e) {
             console.error(e);
