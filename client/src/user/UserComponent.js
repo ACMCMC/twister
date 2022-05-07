@@ -30,13 +30,15 @@ function UserComponent(props) {
         navigation("/profile");
     }
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null); // Local state: the user we're looking at
 
     useEffect(() => {
+        // Get the data of the user we're looking at
         loadUser(id).then(result => { setUser(result.data) }).catch(error => { console.error(error) });
     }, []);
 
     useEffect(() => {
+        // Load our followers and people we're following
         if (props.currentUserId) {
             loadFollowing(dispatch, props.currentUserId);
             loadFollowers(dispatch, props.currentUserId);
