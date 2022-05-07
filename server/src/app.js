@@ -1,4 +1,4 @@
-require('dotenv').config({path: './config.env'});
+require('dotenv').config({ path: './config.env' });
 
 const path = require('path');
 const api = require('./api.js');
@@ -13,10 +13,15 @@ api_1 = require("./api.js");
 const session = require("express-session");
 
 app.use(session({
-    secret: "technoweb rocks"
+    secret: "aldan_creo_myrandomsecret"
 }));
 
 app.use('/api', api.default());
+
+app.use(function (err, req, res, next) {
+    res.status(500);
+    res.render('error', { error: err });
+});
 
 // Démarre le serveur
 app.on('close', () => {

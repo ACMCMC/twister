@@ -79,3 +79,7 @@ input:focus, textarea:focus {
     padding: 2em;
     background-color: white;
 }
+
+#mainContent {
+    min-height: 92vh;
+}

@@ -2,13 +2,13 @@
 #footer {
     display: flex;
     border-bottom: 0.1em solid white;
+    border-bottom: none;
     position: sticky;
     top: 0;
     background-color: black;
     color: white;
-    height: auto;
+    height: 4vh;
     align-items: center;
     justify-content: space-between;
-    padding: 2%;
-    
+    padding: 2vh;
 }

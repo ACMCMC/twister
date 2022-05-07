@@ -1,14 +1,14 @@
 #header {
     display: flex;
     border-bottom: 0.1em solid white;
-    position: sticky;
+    position: fixed;
     top: 0;
     background-color: black;
     color: white;
-    height: 4em;
+    height: 8vh;
     align-items: center;
     justify-content: space-between;
-    
+    width: 100%;
 }
 
 #header > #search {

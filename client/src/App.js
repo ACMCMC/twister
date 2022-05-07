@@ -30,15 +30,17 @@ function App() {
     return (
         <BrowserRouter>
             <NavigationPannel></NavigationPannel>
-            <Routes>
-                <Route path="/" element={<Feed />} />
-                <Route path="login" element={<Login />} />
-                <Route path="sign_up" element={<SignUp />} />
-                <Route path="user" element={<UserComponent />} />
-                <Route path="profile" element={<ProfileComponent />} />
-                <Route path="/user/:id" element={<UserComponent />} />
-                <Route path="/search" element={<SearchComponent />} />
-            </Routes>
+            <div id="mainContent">
+                <Routes>
+                    <Route path="/" element={<Feed />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="sign_up" element={<SignUp />} />
+                    <Route path="user" element={<UserComponent />} />
+                    <Route path="profile" element={<ProfileComponent />} />
+                    <Route path="/user/:id" element={<UserComponent />} />
+                    <Route path="/search" element={<SearchComponent />} />
+                </Routes>
+            </div>
             <Footer></Footer>
         </BrowserRouter>
     );
