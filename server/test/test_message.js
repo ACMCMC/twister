@@ -1,6 +1,6 @@
 const chaiHttp = require('chai-http');
 const chai = require('chai');
-const app = require('../src/app.js'); // c'est l'app "express"
+const app = require('../src/index.js'); // c'est l'app "express"
 //import { describe, it } from 'mocha'
 const mocha = require('mocha');
 const { request } = require('chai');
@@ -22,11 +22,16 @@ mocha.describe("Test of the messages API", () => {
             password: "test",
         };
 
+
         return request
             .post('/api/public/login')
             .send(user).then((res) => {
                 sid = res.header['set-cookie'][0].split(';')[0];
             });
+    });
+
+    after(() => {
+        return app.default.close(() => console.log('Server closed'));
     });
 
     // This test does not need the `done` because it is not asynchronous.
