@@ -81,5 +81,6 @@ input:focus, textarea:focus {
 }
 
 #mainContent {
-    min-height: 92vh;
+    min-height: 84vh;
+    margin-top: 8vh;
 }
