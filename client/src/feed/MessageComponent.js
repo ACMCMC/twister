@@ -20,11 +20,21 @@ function dislike(dispatch, _id) {
     });
 }
 
+function signal(dispatch, _id) {
+    axios.put("/api/message/signal", { _id: _id }).then((resp) => {
+        dispatch(addMessage({ message: resp.data }));
+        loadStats(dispatch);
+    });
+}
+
 function MessageComponent(props) {
     const dispatch = useDispatch();
     const liked = props.message.liked_by.includes(props.user.username);
     const totalLikes = props.message.liked_by.length;
+    const signalled = props.message.signalled_by.includes(props.user.username);
+    const totalSignalled = props.message.signalled_by.length;
 
+    if (totalSignalled <= 10) {
     return (
         <div className={["generalContainer", styles.commentContainer].join(" ")}>
             <div className={"containerContent"}>
@@ -42,11 +52,27 @@ function MessageComponent(props) {
                             dislike(dispatch, props.message._id)
                         }
                     }}>{liked ? "❤️" : "🤍"} {totalLikes}</button>
+                    <button className={["regularButton", "secondaryButton"].join(" ")} onClick={() => {
+                        if (true) { // Allow repeated signals
+                            signal(dispatch, props.message._id)
+                        }
+                    }}>{signalled ? "❗" : "❕"} {totalSignalled}</button>
                 </div>
                 <div className={styles.commentText}>{props.message.text}</div>
             </div>
         </div>
-    );
+    ); }
+    else {
+        return (
+        <div className={["generalContainer", styles.commentContainer].join(" ")}>
+            <div className={"containerContent"}>
+                <div className={styles.commentInfoHeader}>
+                    <p>This message by <Link to={"/user/" + props.message.author} className={styles.commentUsername}>@{props.message.author}</Link> has {totalSignalled} signals, so it is not shown.</p>
+                </div>
+            </div>
+        </div>
+        );
+    }
 }
 
 function mapStateToProps(state) {

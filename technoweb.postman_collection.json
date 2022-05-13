@@ -570,6 +570,34 @@
 			"response": []
 		},
 		{
+			"name": "Signal a message",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"{{message_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/message/signal",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"message",
+						"signal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Remove a like from a message",
 			"request": {
 				"method": "DELETE",

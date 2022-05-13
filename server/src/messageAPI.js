@@ -7,14 +7,22 @@ const User = require("./entities/users.js");
 function transform_msg(msg) {
     return (User.findById(msg.author).exec().then((author) =>
         User.find({ _id: { $in: msg.liked_by } }).exec().then((likers) => {
-            return ({
-                author: author.username,
-                text: msg.text,
-                created: msg.created,
-                liked_by: likers.map(l => l.username),
-                parent: msg.parent,
-                _id: msg._id,
-            });
+            return User.find({ _id: { $in: msg.signalled_by } }).exec().then((signallers) => {
+                let signallersUsernames = []
+                for (let signallerId of msg.signalled_by) {
+                    const signaller = signallers.find(s => s._id.equals(signallerId));
+                    signallersUsernames.push(signaller.username);
+                }
+                return ({
+                    author: author.username,
+                    text: msg.text,
+                    created: msg.created,
+                    liked_by: likers.map(l => l.username),
+                    parent: msg.parent,
+                    _id: msg._id,
+                    signalled_by: signallersUsernames,
+                });
+            })
         })
     ));
 }
@@ -123,6 +131,26 @@ function init() {
                 res.status(500).send(e);
             }
         });
+
+    router.route("/signal").put(async (req, res) => {
+        try {
+            const msg = await Message.findById(req.body._id).exec();
+            if (!msg)
+                res.sendStatus(404);
+            else {
+                const index = msg.signalled_by.indexOf(req.session.current_user._id);
+                if (true) { // Allow for repeated signals, check if index === -1 to disable
+                    msg.signalled_by.push(req.session.current_user._id);
+                }
+                await msg.save();
+                const transformed = await transform_msg(msg);
+                res.status(201).send(transformed);
+            }
+        } catch (e) {
+            console.error(e);
+            res.status(500).send(e);
+        }
+    })
 
     return router;
 }
